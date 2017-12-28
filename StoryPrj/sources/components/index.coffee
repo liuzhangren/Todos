@@ -52,10 +52,11 @@ class StoryTodos extends Component
       c_Title
       c_div
     } = CFX
-    
+   
     c_div {}
     ,
       c_Title {}
+      
       c_Input
         filter: @state.filter
         selector: (
@@ -63,13 +64,15 @@ class StoryTodos extends Component
             @props.actions.filterSave
               filter: filter
         ).bind @
-
+      
         blur: (
           (v) ->
             console.log v
-            @props.actions.create todo: v
+            @props.actions.create todo: v         
+            
+            console.log store.getStore()
         ).bind @
-      
+    
       c_List
         data: [
             value: 0
@@ -96,6 +99,7 @@ mapStateToProps = (state) ->
 mapActionToProps =
   filterSave: actions.filterSave
   create: actions.todosCreate
+  fetch: actions.todosFetch
 
 export default connect(
   mapStateToProps

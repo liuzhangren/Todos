@@ -64,9 +64,10 @@ StoryTodos = class StoryTodos extends Component {
       }).bind(this),
       blur: (function(v) {
         console.log(v);
-        return this.props.actions.create({
+        this.props.actions.create({
           todo: v
         });
+        return console.log(store.getStore());
       }).bind(this)
     }), c_List({
       data: [
@@ -100,7 +101,8 @@ mapStateToProps = function(state) {
 
 mapActionToProps = {
   filterSave: actions.filterSave,
-  create: actions.todosCreate
+  create: actions.todosCreate,
+  fetch: actions.todosFetch
 };
 
 export default connect(mapStateToProps, mapActionToProps, StoryTodos);
